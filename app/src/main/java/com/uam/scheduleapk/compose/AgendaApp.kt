@@ -3,6 +3,7 @@ package com.uam.scheduleapk.compose
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,7 +23,7 @@ import com.uam.scheduleapk.viewmodel.AgendaViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun AgendaApp(modifier: Modifier) {
+fun AgendaApp(padding: PaddingValues) {
     val agendaModel: AgendaViewModel =  viewModel()
     val collectState by agendaModel.state.collectAsState()
 
@@ -34,7 +35,8 @@ fun AgendaApp(modifier: Modifier) {
     }
 
     LazyColumn (verticalArrangement = Arrangement.Center,
-                 horizontalAlignment = Alignment.CenterHorizontally) {
+                 horizontalAlignment = Alignment.CenterHorizontally
+                , contentPadding = padding) {
              items(collectState.listAgenda){
                  Card(modifier = Modifier.fillMaxSize().padding(5.dp),
                      elevation = CardDefaults.cardElevation(8.dp)) {
